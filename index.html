@@ -7,18 +7,33 @@
     background-color: #000;
     color: #fff;
   }
+  .wrapper {
+    text-align: center;
+    padding:0 10px;
+  }
+  #canvas {
+    visibility: hidden;
+    border: solid 1px #fff;
+  }
+  #startButton, #stopButton {
+    display:none;
+  }
   </style>
   <script src="https://code.jquery.com/jquery-3.1.0.js"
           integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
-          crossorigin="anonymous"></script>  
+          crossorigin="anonymous"></script>
+  <script src='node_modules/webrtc-adapter/out/adapter.js'></script>
   <script src='built/app.js'></script>
   <body>
       <h1>WebAudioAPI Example</h1>
-      <section>
-          <canvas id="canvas" style="width: 100%;height:200px;border:solid 1px #fff;">
+      <section class="wrapper">
+          <canvas id="canvas" height="256" >
           </canvas>
-          <div style="text-align:center">
-            <button id="startbutton">start</button>
+          <div>
+            <label>マイク使用：<input id="useUserMedia" type="checkbox"></label>
+            <input id="audioFile" type="file" accept="audio/*" />
+            <button id="startButton">start</button>
+            <button id="stopButton">stop</button>
           </div>
       </section>
   </body>
