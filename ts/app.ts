@@ -218,8 +218,12 @@ class App {
         this._analyser.getByteTimeDomainData(this._amplitudeArray);
 
         if (this.IsExecuting) {
+            if(!!this._animationID) {
+                window.cancelAnimationFrame(this._animationID);
+            }
             this._animationID = window.requestAnimationFrame(() => {
                 this.drawTimeDomain();
+                delete this._animationID;
             });
         }
     }

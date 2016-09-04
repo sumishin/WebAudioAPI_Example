@@ -157,8 +157,12 @@ class App {
         this._amplitudeArray = new Uint8Array(this._analyser.frequencyBinCount);
         this._analyser.getByteTimeDomainData(this._amplitudeArray);
         if (this.IsExecuting) {
+            if (!!this._animationID) {
+                window.cancelAnimationFrame(this._animationID);
+            }
             this._animationID = window.requestAnimationFrame(() => {
                 this.drawTimeDomain();
+                delete this._animationID;
             });
         }
     }
