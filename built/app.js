@@ -78,7 +78,6 @@ class App {
                 this._microphone.connect(this._analyser);
                 this._scriptProcessor = this._audioContext.createScriptProcessor(this._analyser.fftSize, 1, 1);
                 this._analyser.connect(this._scriptProcessor);
-                //this._scriptProcessor.connect(this._microphone);
                 this._scriptProcessor.onaudioprocess = () => this.onAudioProcess();
                 // 波形描写領域クリア
                 this._drawer.clear();
