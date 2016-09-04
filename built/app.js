@@ -10,15 +10,15 @@ class TimeDomainSummaryDrawer {
         // 波形データは, 0 ～ 255, で表現されています。 
         // 振幅が1で考えると, 1が255, 0 (無音) が128, -1が0に対応しています。
         // この関係に基づき、以下のような計算で描写すべき領域を求めます。
-        var drawLow = this._height - (this._height * (low / 256)) - 1;
-        var drawHi = this._height - (this._height * (hi / 256)) - 1;
-        // x位置が右端ならクリア
-        if (this._width <= this._currentX) {
+        var drawLow = this._height - (this._height * (low / 256));
+        var drawHi = this._height - (this._height * (hi / 256));
+        // x位置が幅を超えているようならクリア
+        if (this._width < this._currentX) {
             this.clear();
         }
         // 現在位置の中央部を描写
         this._context.fillStyle = '#cccccc';
-        this._context.fillRect(this._currentX, this._height / 2, 1, 0.5);
+        this._context.fillRect(this._currentX, this._height / 2, 1, 1);
         // summary描写
         this._context.fillStyle = '#ffffff';
         this._context.fillRect(this._currentX, drawLow, 1, drawHi - drawLow);
